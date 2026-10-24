@@ -5,7 +5,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 
 import viteReact from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 
 const config = defineConfig({
 	resolve: { tsconfigPaths: true },
@@ -13,9 +13,14 @@ const config = defineConfig({
 		devtools(),
 		nitro(),
 		tailwindcss(),
-		tanstackStart({ router: { quoteStyle: "double" } }),
+		tanstackStart({ router: { quoteStyle: "double" }, spa: { enabled: true } }),
 		viteReact(),
 	],
+	test: {
+		globals: true,
+		environment: "jsdom",
+		include: ["./src/test/**/*.test.{ts,tsx}"],
+	},
 });
 
 export default config;
