@@ -1,0 +1,40 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+
+# Dependencies
+node_modules/
+
+# Build & output
+dist/
+dist-ssr/
+.output/
+build/
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs & Cache
+.log
+npm-debug.log
+.vite/
+.biome/
+
+# Local environment
+*.local
+.env
+.env.*
+!.env.example
+
+# Framework & Deployment
+.tanstack/
+.nitro/
+.wrangler/
+.vinxi/
+
+# Generated configuration
+__unconfig*
