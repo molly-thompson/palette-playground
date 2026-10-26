@@ -17,10 +17,42 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				title: "palette playground",
 			},
+			{
+				name: "description",
+				content: "A developer tool for visualisation and rapid experimentation with colour palettes.",
+			},
+			{
+				name: "apple-mobile-web-app-title",
+				content: "palette playground",
+			}
 		],
 		links: [
+			{
+				rel: "icon",
+				type: "image/png",
+				href: "/favicon-96x96.png",
+				sizes: "96x96",
+			},
+			{
+				rel: "icon",
+				type: "image/svg+xml",
+				href: "/favicon.svg",
+			},
+			{
+				rel: "shortcut icon",
+				href: "/favicon.ico",
+			},
+			{
+				rel: "apple-touch-icon",
+				href: "/apple-touch-icon.png",
+				sizes: "180x180",
+			},
+			{
+				rel: "manifest",
+				href: "/site.webmanifest",
+			},
 			{
 				rel: "stylesheet",
 				href: appCss,
@@ -32,11 +64,11 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" data-theme="dark" suppressHydrationWarning>
+		<html lang="en" data-theme="default" suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>
-			<body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+			<body className="font-sans antialiased min-h-screen [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
 				<Header />
 				{children}
 				<Footer />
