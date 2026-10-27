@@ -21,6 +21,21 @@ const config = defineConfig({
 		environment: "jsdom",
 		include: ["./src/test/**/*.test.{ts,tsx}"],
 	},
+	build: {
+		rolldownOptions: {
+			onwarn(warning, warn) {
+				// Suppress MODULE_LEVEL_DIRECTIVE warnings originating from node_modules
+				if (
+					warning.code === "MODULE_LEVEL_DIRECTIVE" &&
+					warning.message?.includes("node_modules")
+				) {
+					return;
+				}
+				// Allow other warnings
+				warn(warning);
+			},
+		},
+	},
 });
 
 export default config;
