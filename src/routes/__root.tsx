@@ -1,5 +1,10 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+	createRootRoute,
+	HeadContent,
+	Outlet,
+	Scripts,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -21,12 +26,13 @@ export const Route = createRootRoute({
 			},
 			{
 				name: "description",
-				content: "A developer tool for visualisation and rapid experimentation with colour palettes.",
+				content:
+					"A developer tool for visualisation and rapid experimentation with colour palettes.",
 			},
 			{
 				name: "apple-mobile-web-app-title",
 				content: "palette playground",
-			}
+			},
 		],
 		links: [
 			{
@@ -62,15 +68,15 @@ export const Route = createRootRoute({
 	shellComponent: RootDocument,
 });
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument() {
 	return (
-		<html lang="en" data-theme="default" suppressHydrationWarning>
+		<html lang="en" data-theme="light" suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>
-			<body className="font-sans antialiased min-h-screen [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+			<body className="scrollbar min-h-screen flex flex-col bg-background text-foreground transition-colors font-sans antialiased">
 				<Header />
-				{children}
+				<Outlet />
 				<Footer />
 				<TanStackDevtools
 					config={{
