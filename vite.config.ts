@@ -1,0 +1,41 @@
+import tailwindcss from "@tailwindcss/vite";
+import { devtools } from "@tanstack/devtools-vite";
+
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+
+import viteReact from "@vitejs/plugin-react";
+import { nitro } from "nitro/vite";
+import { defineConfig } from "vitest/config";
+
+const config = defineConfig({
+	resolve: { tsconfigPaths: true },
+	plugins: [
+		devtools(),
+		nitro(),
+		tailwindcss(),
+		tanstackStart({ router: { quoteStyle: "double" }, spa: { enabled: true } }),
+		viteReact(),
+	],
+	test: {
+		globals: true,
+		environment: "jsdom",
+		include: ["./src/test/**/*.test.{ts,tsx}"],
+	},
+	build: {
+		rolldownOptions: {
+			onwarn(warning, warn) {
+				// Suppress MODULE_LEVEL_DIRECTIVE warnings originating from node_modules
+				if (
+					warning.code === "MODULE_LEVEL_DIRECTIVE" &&
+					warning.message?.includes("node_modules")
+				) {
+					return;
+				}
+				// Allow other warnings
+				warn(warning);
+			},
+		},
+	},
+});
+
+export default config;
